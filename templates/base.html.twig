@@ -1,19 +1,190 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="stylesheet" href="css/bootstrap.min.css">
+            <link rel="stylesheet" href="/stylesheets/screen.css">
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+    
+
+<body>
+    {% block nav %}
+        <div class="topnav" id="myTopnav">
+            <a href="#" class="active"><i class="fa fa-fw fa-home"></i>Home</a>
+            <a href="#">News</a>
+            <a href="#">Contact</a>
+            <a href="#">About</a>
+            <div  class="login">
+                <a href="#"><i class="fa fa-fw fa-user "></i> Login</a>
+            </div>
+            <div class="book_btn d-none d-xl-block">
+                <a class="#" href="#">Connexion</a>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-google-plus"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a> 
+        </div>
+    {% endblock nav %}
+
+    <div class="image">
+    </div>
+
+    <div class="text-block">
+       <div class="slider_text text-center">
+            <div class="deal_text">
+                <span>Big Deal</span>
+            </div>
+            <h3>Burger <br>
+            Bachelor</h3>
+            <h4>Maxican</h4>
+        </div>
+    </div>
+
+    <div class="best_burgers_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="entete text-center mb-80">
+                        <span>Burger Menu</span>
+                        <h2>Best Ever Burgers</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="catalogue">
+                <div class="row">
+                    <div class="img1">
+                        <div>
+                            <img src="img/burger/1.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div>
+                            <img src="img/burger/2.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="img1">
+                        <div>
+                            <img src="img/burger/3.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div>
+                            <img src="img/burger/4.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="img1">
+                        <div>
+                            <img src="img/burger/5.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <div>
+                            <img src="img/burger/6.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="img1">
+                        <div>
+                            <img src="img/burger/7.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <a href="" class="span">Details</a>
+{#                             <span class="span">$5</span>  
+ #}                        </div>
+                    </div>
+                    <div class="row2">
+                        <div>
+                            <img src="img/burger/8.png" alt="">  
+                        </div> 
+                        <div class="info">
+                            <h2 class="info1">Beefy Burgers</h2>
+                            <p>Great way to make your business appear trust and relevant.</p>
+                            <span class="span">$5</span>  
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</body>
+{% block js %}
+    <script src="js/menu.js"></script>
+{% endblock js %}
 </html>
