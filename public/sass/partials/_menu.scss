@@ -61,11 +61,12 @@ float: right;
 
 
 .image{
-    background-image: url('img/banner/banner.png');
-    // background-repeat: no-repeat;
+/*     background-image: url('img/banner/banner.png');
+ */    // background-repeat: no-repeat;
     // background-attachment: fixed;
     // background-position: center; 
     // background-size: 500px;
+    position:absolute;
 
 }
 
@@ -81,6 +82,9 @@ float: right;
    color: white;
   // padding-left: 20px;
   // padding-right: 20px;
+  position: relative;
+  z-index: 1;
+  margin-top: 52px;
 }
 
 .deal_text {

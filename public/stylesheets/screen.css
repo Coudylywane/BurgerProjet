@@ -140,15 +140,20 @@ li {
 
 /* line 63, ../sass/partials/_menu.scss */
 .image {
-  background-image: url("img/banner/banner.png");
+  /*     background-image: url('img/banner/banner.png');
+   */
+  position: absolute;
 }
 
-/* line 74, ../sass/partials/_menu.scss */
+/* line 75, ../sass/partials/_menu.scss */
 .text-block {
   color: white;
+  position: relative;
+  z-index: 1;
+  margin-top: 52px;
 }
 
-/* line 86, ../sass/partials/_menu.scss */
+/* line 90, ../sass/partials/_menu.scss */
 .deal_text {
   background-image: url(../img/shape/1.png);
   background-repeat: no-repeat;
@@ -157,7 +162,7 @@ li {
   padding: 18px 42px;
 }
 
-/* line 94, ../sass/partials/_menu.scss */
+/* line 98, ../sass/partials/_menu.scss */
 h3 {
   font-size: 100px;
   text-transform: uppercase;
@@ -168,7 +173,7 @@ h3 {
   font-family: "Paytone One", sans-serif;
 }
 
-/* line 104, ../sass/partials/_menu.scss */
+/* line 108, ../sass/partials/_menu.scss */
 h4 {
   font-size: 140px;
   font-family: "Pacifico", cursive;
@@ -177,7 +182,7 @@ h4 {
   margin-top: -80px;
 }
 
-/* line 113, ../sass/partials/_menu.scss */
+/* line 117, ../sass/partials/_menu.scss */
 .best_burgers_area {
   padding-bottom: 115px;
   padding-top: 140px;
@@ -188,58 +193,58 @@ h4 {
 }
 
 @media screen and (max-width: 600px) {
-  /* line 127, ../sass/partials/_menu.scss */
+  /* line 131, ../sass/partials/_menu.scss */
   .topnav a:not(:first-child) {
     display: none;
   }
 
-  /* line 128, ../sass/partials/_menu.scss */
+  /* line 132, ../sass/partials/_menu.scss */
   .topnav a.icon {
     float: right;
     display: block;
   }
 
-  /* line 132, ../sass/partials/_menu.scss */
+  /* line 136, ../sass/partials/_menu.scss */
   .login {
     float: left;
   }
 
-  /* line 135, ../sass/partials/_menu.scss */
+  /* line 139, ../sass/partials/_menu.scss */
   li {
     display: none;
   }
 
-  /* line 138, ../sass/partials/_menu.scss */
+  /* line 142, ../sass/partials/_menu.scss */
   .book_btn a {
     float: left;
   }
 }
 @media screen and (max-width: 600px) {
-  /* line 144, ../sass/partials/_menu.scss */
+  /* line 148, ../sass/partials/_menu.scss */
   .topnav.responsive {
     position: relative;
   }
 
-  /* line 145, ../sass/partials/_menu.scss */
+  /* line 149, ../sass/partials/_menu.scss */
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
 
-  /* line 150, ../sass/partials/_menu.scss */
+  /* line 154, ../sass/partials/_menu.scss */
   .topnav.responsive a {
     float: none;
     display: block;
     text-align: left;
   }
 
-  /* line 155, ../sass/partials/_menu.scss */
+  /* line 159, ../sass/partials/_menu.scss */
   .login {
     float: left;
   }
 
-  /* line 158, ../sass/partials/_menu.scss */
+  /* line 162, ../sass/partials/_menu.scss */
   .book_btn a {
     float: left;
   }
@@ -350,4 +355,190 @@ img {
 /* line 91, ../sass/partials/_catalogue.scss */
 .entete {
   margin-top: -20px;
+}
+
+/* line 2, ../sass/partials/_connexion.scss */
+.content {
+  font-family: 'Open Sans', sans-serif;
+  min-height: 60vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("img/banner/banner.png");
+  position: relative;
+}
+
+/* line 14, ../sass/partials/_connexion.scss */
+.container1 {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 800px;
+  position: absolute;
+  padding: 25px;
+}
+
+/* line 24, ../sass/partials/_connexion.scss */
+.container1 h2 {
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+/* line 29, ../sass/partials/_connexion.scss */
+.form {
+  padding: 30px 40px;
+  height: 442px;
+}
+
+/* line 34, ../sass/partials/_connexion.scss */
+.form-controle {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+  height: 105px;
+}
+
+/* line 43, ../sass/partials/_connexion.scss */
+.form-controle label {
+  /*  color: #777;
+   display: block;
+   margin-bottom: 5px; */
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* line 54, ../sass/partials/_connexion.scss */
+input:invalid {
+  border-color: #900;
+  background-color: #FDD;
+}
+
+/* line 59, ../sass/partials/_connexion.scss */
+.form-controle input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  width: 100%;
+  background: #efefef;
+  display: block;
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* line 69, ../sass/partials/_connexion.scss */
+.content.show-modal {
+  display: block;
+}
+
+/* line 77, ../sass/partials/_connexion.scss */
+.form-controle input:focus {
+  outline: 0;
+  border-color: #777;
+}
+
+/* line 82, ../sass/partials/_connexion.scss */
+.form-controle.success input {
+  border-color: var(--success-color);
+}
+
+/* line 86, ../sass/partials/_connexion.scss */
+.form-controle.error input {
+  border-color: var(--error-color);
+}
+
+/* line 90, ../sass/partials/_connexion.scss */
+.form-controle small {
+  color: var(--error-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+/* line 98, ../sass/partials/_connexion.scss */
+.form-controle.error small {
+  visibility: visible;
+}
+
+/* line 102, ../sass/partials/_connexion.scss */
+.form button {
+  cursor: pointer;
+  background-color: #F2C64D;
+  border: 2px solid #F2C64D;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* line 115, ../sass/partials/_connexion.scss */
+.control {
+  cursor: pointer;
+  background-color: #F2C64D;
+  border: 2px solid #F2C64D;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* line 128, ../sass/partials/_connexion.scss */
+.inscrip {
+  color: black;
+  margin-left: 43%;
+}
+
+/* line 134, ../sass/partials/_connexion.scss */
+.lien {
+  margin-top: 35px;
+}
+
+/* line 141, ../sass/partials/_connexion.scss */
+.deal_texte {
+  background-image: url(../img/shape/1.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  padding: 20px 38px;
+  margin-left: 37%;
+  margin-top: -18px;
+}
+
+/* line 1, ../sass/partials/_table.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+/* line 8, ../sass/partials/_table.scss */
+th {
+  text-align: left;
+  padding: 16px;
+  color: #fff;
+  background-color: #F2C64D;
+}
+
+/* line 15, ../sass/partials/_table.scss */
+td {
+  text-align: left;
+  padding: 16px;
+}
+
+/* line 20, ../sass/partials/_table.scss */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* line 24, ../sass/partials/_table.scss */
+.content1 {
+  font-family: 'Open Sans', sans-serif;
+  margin: 80px;
 }

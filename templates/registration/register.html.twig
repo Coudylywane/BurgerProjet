@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{parent()}}
+    {% block logout %}{% endblock logout %}
+    {% block connect %}{% endblock connect %}
+    <div class="content" id="modal">
+        <img src="img/banner/banner.png" alt="" style="width: 100%; height: 902px;">
+        <div class="container1">
+            <form  id="form" method="post" action="/newuser">
+                  <div class="form-controle">
+                    <label>Nom</label>
+                        <input type="text"  name="nom" id="inputEmail" class="form-control"  required autofocus placeholder="Enter votre nom">
+                    <small>Error message</small>
+                </div>
+                <div class="form-controle">
+                    <label>Prenom</label>
+                        <input type="text"  name="prenom" id="inputEmail" class="form-control"  required autofocus placeholder="Enter votre prenom">
+                    <small>Error message</small>
+                </div>
+                <div class="form-controle">
+                    <label >Telephone</label>
+                        <input type="number"  name="telephone" id="inputEmail" class="form-control"  required autofocus placeholder="Enter votre telephone">
+                    <small>Error message</small>
+                </div>
+                <div class="form-controle">
+                    <label >Email</label>
+                        <input type="email"  name="email" id="inputEmail" class="form-control"  required autofocus placeholder="Enter votre email">
+                    <small>Error message</small>
+                </div>
+                <div class="form-controle">
+                    <label >Password</label>
+                        <input type="password"  name="password" id="inputEmail" class="form-control"  plainPassword   required autofocus placeholder="Enter votre password">
+                    <small>Error message</small>
+                </div> 
+
+                <button type="submit" class="control">Creer compte</button>
+            </form>
+        </div>   
+    </div>
+
+    {% endblock %}
+{# {% block title %}Register{% endblock %}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.nom) }}
+
+        {{ form_row(registrationForm.prenom) }}
+
+        {{ form_row(registrationForm.telephone) }}
+
+        {{ form_row(registrationForm.email) }}
+
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+        <button type="submit" class="btn">Register</button>
+{% endblock %} #}
+
+

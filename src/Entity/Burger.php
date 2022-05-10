@@ -14,10 +14,10 @@ class Burger
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nom_burger;
+    public $nom_burger;
 
     #[ORM\Column(type: 'integer')]
-    private $prix_burger;
+    public $prix_burger;
 
     public function getId(): ?int
     {

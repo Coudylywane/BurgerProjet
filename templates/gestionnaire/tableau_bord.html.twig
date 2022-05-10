@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+
+
+    {% block body %}
+    
+        <body>
+                {% block navbar %}{{parent()}}{% endblock navbar %}
+                {% block connect %}{% endblock connect %}
+            <h1>
+                Tableau de bord
+            </h1>  
+        </body>
+    {% endblock body %}  
+
+        

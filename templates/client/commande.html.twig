@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% block navbar %} {{ parent() }} 
+{% block menu %}
+    <a href="#" class="active"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="{{path('commande')}}">Mes commandes</a> 
+{% endblock  %}
+{% endblock navbar %}
+{% block connect %}{% endblock connect %}
+
+{% block table %}
+<div class="content1">
+        <table>
+            <tr>
+              <th>Numero commande</th>
+              <th>La commande</th>
+              <th>Points</th>
+            </tr>
+            <tr>
+              <td>Jill</td>
+              <td>Smith</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>Eve</td>
+              <td>Jackson</td>
+              <td>94</td>
+            </tr>
+            <tr>
+              <td>Adam</td>
+              <td>Johnson</td>
+              <td>67</td>
+            </tr>
+          </table>
+</div>
+
+{% endblock table %}
+
+{% endblock body %}
+
+    
