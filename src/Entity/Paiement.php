@@ -19,6 +19,9 @@ class Paiement
     #[ORM\Column(type: 'datetime')]
     private $date_paiement;
 
+    #[ORM\OneToOne(mappedBy: 'paiements', targetEntity: Commande::class, cascade: ['persist', 'remove'])]
+    private $commande;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,28 @@ class Paiement
     public function setDatePaiement(\DateTimeInterface $date_paiement): self
     {
         $this->date_paiement = $date_paiement;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($commande === null && $this->commande !== null) {
+            $this->commande->setPaiements(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($commande !== null && $commande->getPaiements() !== $this) {
+            $commande->setPaiements($this);
+        }
+
+        $this->commande = $commande;
 
         return $this;
     }

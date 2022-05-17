@@ -1,0 +1,69 @@
+{#     {% extends 'base.html.twig' %}
+
+{% block body %}
+{{ parent() }}
+{% block logout %}{% endblock logout %}
+{% block connect %}{{ parent() }}{% endblock connect %} #}
+
+{% block details %}
+    <div class="tout">
+        {% block image %}
+        <div class="image2">
+            <img src="/img/burger/9.png" class="image3" alt="">  
+        </div>
+        {% endblock image %}
+        {% for burger in burgers %}
+        {% block cont %}
+            <div class="details">
+                <div class="card">
+                    <div class="contenu1">
+                    <h2 class="titre1">{{burger.nom_burger}}</h2>
+                    <p class="titre2">{{burger.description}}</p>
+                        <span class="spane">{{burger.prix_burger}}FCF</span>
+{#                         <button class="controle">Commander</button>
+ #}                    </div>
+                </div>
+            </div>
+        {% endblock cont %} 
+        {% endfor %}    
+    </div>
+{% endblock details %}
+
+{% block ingredient %}
+    <h2 class="ingre">Les Ingredients du Burger Royal</h2>
+    <div style="display: flex ; margin-left:21%;" >
+        <div>
+            <img src="/img/burgers/in1.jpeg" alt="">
+            <p style="text-align: center;">Steak</p>
+        </div>
+
+        <div>
+            <img src="/img/burgers/in7.jpeg" alt="">
+            <p style="text-align: center;">Pain</p>
+        </div>
+
+        <div>
+            <img src="/img/burgers/in3.jpeg" alt="">
+            <p style="text-align: center;">Fromage </p>
+        </div>
+
+        <div>
+            <img src="/img/burgers/in4.jpeg" alt="">
+            <p style="text-align: center;">Ketchup</p>
+        </div>
+
+        <div>
+            <img src="/img/burgers/in5.jpeg" alt="">
+            <p style="text-align: center;">Tranches de cornichon
+            </p>
+        </div>
+
+        <div>
+            <img src="/img/burgers/in6.jpeg" alt="">
+            <p style="text-align: center;">Oignons</p>
+        </div>
+    </div>
+{% endblock ingredient %}
+
+
+

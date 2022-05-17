@@ -20,6 +20,7 @@ class BurgerFixtures extends Fixture
             $burger = new Burger();
             $burger->setNomBurger('Burger '.$i);
             $burger->setPrixBurger(1500);
+            $burger->setDescription('description');
             $manager->persist($burger);
         }
 

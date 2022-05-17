@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block nav %}
+
+    {# {{ parent() }} #}
+    {% if role is defined and role =='ROLE_GESTIONNAIRE' %}
+        {% block gestionnaire %}{{ parent() }}{% endblock  %}
+    {% elseif role is defined and role =='ROLE_USER' %}
+        {% block client %}{{ parent() }}{% endblock %}
+    {% else %}
+        {% block connect %}{{ parent() }}{% endblock %}
+    {% endif %}
+{% endblock  %}
+
+{% block body %}
+
+
+        <div class="image">
+            <img src="img/banner/bradcam.png"alt="" style="width: 1833px; height: 570px ;">
+        </div>
+    
+        <div class="text-block">
+           <div class="slider_text text-center">
+                <div class="deal_text">
+                    <span>Big Deal</span>
+                </div>
+                <h3>Burger <br>
+                Bachelor</h3>
+                <h4>Maxican</h4>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="best_burgers_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="entete text-center mb-80">
+                                <span>Burger Menu</span>
+                                <h2>Best Ever Burgers</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% block burger %}
+                        <div class="a1">
+                            <div class="a2">
+
+                            </div>
+                        </div>
+                    {% endblock burger %}
+                
+                </div>
+            </div> 
+            <div class="filters-content">
+                <div class="row grid">
+                    {% for burger in burgers %}  
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="box">
+                            <div>
+                                <div class="img-box animate__animated animate__pulse">
+                                    <img src="img/burger/10.png" alt="">  
+                                </div>
+                                <div class="detail-box">
+                                   <h5>{{burger.nom_burger}}</h5> 
+                                   <p>
+                                    Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, 
+                                    magnam voluptatem repellendus sed eaque
+                                   </p>
+                                   <div class="options">
+                                        <h6>1500f</h6>
+                                        <a href=""><i class="fas fa-shopping-cart"></i></a>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} 
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+{#         <div class="contents">
+        <div class="container">
+        <div class="row">
+            {% for burger in burgers %}  
+            <div class="col-md-6 text-center d-flex p-3">
+                    <div >
+                        <img src="img/burger/1.png" alt="" style="animation-duration: 5s;animation:heartBeat;">  
+                    </div>
+                    <div class="info">
+                        <h2 class="info1">{{burger.nom_burger}}</h2>
+                        <p>Great way to make your business appear trust and relevant.</p>
+                        <a href="{{path('details',{'id':burger.id})}}" class="span">Details</a>
+                    </div>
+            </div>  
+            {% endfor %} 
+        </div>
+        </div>
+        </div> #}
+        
+
+    
+
+
+    {% endblock %}

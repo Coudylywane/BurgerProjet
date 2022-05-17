@@ -1,9 +1,18 @@
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
 
-/* 
-const closee = document.getElementById('close');
-const opene = document.getElementById('open');
-const modal = document.getElementById('modal');
 
-opene.addEventListener('click',()=>modal.classList.add('show-modal'));
 
-closee.addEventListener('click',()=>modal.classList.remove('show-modal')); */
+  document.getElementById("navbarDropdown").addEventListener("click" , ()=>{
+    document.getElementById("drop").classList.toggle("show")
+})
+
+document.querySelector("body > div.hero_area > section")
+
+document.querySelector("body > section.offer_section.layout_padding-bottom > div > div > div > div:nth-child(1) > div > div.img-box > img")

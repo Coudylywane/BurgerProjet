@@ -1,0 +1,63 @@
+{% extends 'baseges.html.twig' %}
+
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Ajout Burger</a>
+ {% endblock page %}
+
+
+
+
+
+
+
+    {% block body %}
+<div class="container">
+    <h1 class="mt-4">Ajout Burger</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Ajout Burger</li>
+        </ol>
+    <div class="ajout">
+        <div class="ajout1">
+            <div class="form">
+                {{ form_start(formBurger)}}
+                <div class="label">
+                    {{ form_label(formBurger.nom_burger) }}
+                </div>
+                <div class="form-controle">
+                    {{form_widget(formBurger.nom_burger,{'attr':{'placeholder':'Entrer le nom du burger'}})}}
+                </div>
+                <div class="form-error">
+                    {{ form_errors(formBurger.nom_burger) }}
+                </div>
+
+                {{ form_label(formBurger.prix_burger) }}
+                <div class="form-controle">
+                    {{form_widget(formBurger.prix_burger,{'attr':{'placeholder':'Entrer le nom du burger'}})}}
+                </div>
+                <div class="form-error">
+                    {{ form_errors(formBurger.prix_burger) }}
+                </div>
+
+                {{ form_label(formBurger.description) }}
+                <div class="form-controle">
+                    {{form_widget(formBurger.description,{'attr':{'placeholder':'Entrer le nom du burger'}})}}
+                </div>
+                <div class="form-error">
+                    {{ form_errors(formBurger.description) }}
+                </div>
+                <div class="form-controle">
+                    {{form_widget(formBurger.image)}}
+                </div>
+                <div class="form-error">
+                    {{ form_errors(formBurger.description) }}
+                </div>
+                <button type="submit">Enregistrer</button>
+                {{ form_end(formBurger) }} 
+            </div>
+        </div> 
+    </div>
+</div>
+
+     
+
+    {% endblock %}

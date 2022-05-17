@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+    {% block body %}
+    
+    {% block navbar %}
+    {{ parent() }}
+    
+    {% block menu %}{% endblock menu %}
+    {% block gestionnaire %}{{ parent()}}{% endblock gestionnaire %}
+    
+    {% block client %}{% endblock client %}
+    
+    {% endblock navbar %}
+    {% block connect %}{% endblock connect %}
+
+
+  commande
+    {% endblock body %}  
+
+      

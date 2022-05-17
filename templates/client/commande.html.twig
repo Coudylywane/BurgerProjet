@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-{% block navbar %} {{ parent() }} 
-{% block menu %}
-    <a href="#" class="active"><i class="fa fa-fw fa-home"></i>Home</a>
-    <a href="{{path('commande')}}">Mes commandes</a> 
-{% endblock  %}
-{% endblock navbar %}
-{% block connect %}{% endblock connect %}
+
+{% block menu %} 
+{% endblock menu %}
+{% block nav %}
+    {% block gestionnaire %}{% endblock  %}
+    {% block client %}{{ parent() }}{% endblock %}
+    {% block logout %}{{ parent() }}{% endblock %}
+    {% endblock nav %}
+
+    {% block body %}
+      
+
 
 {% block table %}
 <div class="content1">

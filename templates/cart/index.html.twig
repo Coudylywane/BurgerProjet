@@ -1,0 +1,76 @@
+{% extends 'base.catalogue.html.twig'%}
+
+{% block menu %}
+    {% block image %}
+    {% endblock image %} 
+    {% block header %}
+    {{ parent() }}
+    {% block user %}
+    <a href="" class="user_link">
+        <i class="fas fa-user" aria-hidden="true"></i>
+      </a>
+    {% endblock user %}
+    {% block connect %}{% endblock connect %}
+    {% block deconnect %}
+    <a href="{{path('app_login')}}" class="order_online">
+        Deconnexion
+    </a>
+    {% endblock deconnect %}
+    
+    {% endblock header %}
+{% endblock menu %}
+{% block slider %}
+{% endblock slider %}
+
+
+
+{% block body %}
+<div class="container">
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+
+    {% if items  %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Burger</th>
+                    <th>Prix</th>
+                    <th>Quantite</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{item.burger.nom_burger}}</td>
+                        <td>{{item.burger.prix_burger}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.burger.prix_burger * item.quantity}}</td>
+                        <td>
+                            <a href="{{ path('cart_remove',{'id':item.burger.id}) }}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total : </td>
+                    <td>{{total}}</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <button type="submit" class="btn" style="color: white; background-color: #ffbe33;">Commander</button>
+    </div> 
+
+    {% else %}
+        <p>Surprise, C'est vide !</p>
+    {% endif %}
+
+
+{% endblock %}

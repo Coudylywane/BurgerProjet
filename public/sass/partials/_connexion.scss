@@ -28,7 +28,6 @@
 
 .form{
     padding: 30px 40px;
-    height: 442px;
 }
 
 .form-controle{
@@ -66,12 +65,6 @@ input:invalid{
     padding: 10px;
 }
 
-.content.show-modal{
-    display: block;
-}
-
-
-
 
 
 .form-controle input:focus{
@@ -86,7 +79,6 @@ input:invalid{
 .form-controle.error input{
     border-color: var(--error-color);
 }
-
 .form-controle small{
     color: var(--error-color);
     position: absolute;
@@ -94,7 +86,6 @@ input:invalid{
     left: 0;
     visibility: hidden;
 }
-
 .form-controle.error small{
     visibility: visible;
 }
@@ -147,3 +138,5 @@ input:invalid{
     margin-left: 37%;
     margin-top: -18px;
   }
+  
+
