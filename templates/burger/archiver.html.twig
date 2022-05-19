@@ -1,0 +1,55 @@
+{% extends 'baseges.html.twig' %}
+
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Liste des burgers archiver</a>
+ {% endblock page %}
+
+
+
+
+
+
+
+    {% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="ml-5" style="margin-left: 14%;color:#ffbe33">
+                    <h1 class="mt-4" style="font-size:32px ;">Liste des Burgers archiver</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Liste des Burgers archiver</li>
+                    </ol> 
+                </div>
+
+                <div class="card" style="margin-left: 14%; width: 60%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom burger</th>
+                                <th>Prix burger</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for burger in burgers %}
+                                <tr>
+                                    <td>{{burger.nom}}</td>
+                                    <td>{{burger.prix}}FCFA</td>
+                                    <td>
+                                        <a href="{{path('desarchiver_burger',{'id':burger.id})}}" class="btn" style="color: #ffbe33; background-color: white;">Desarchiver</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+               
+                   
+            </div>
+        </main>
+    </div> 
+    
+    
+    
+      
+    {% endblock %}

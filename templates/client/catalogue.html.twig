@@ -149,8 +149,8 @@
     </div>
     <div class="filters-content">
         <div class="row grid">
-        {% for burger in burgers %}  
-        {% for image in burger.images %}
+        {% for catalogue in catalogues %}  
+        {% for image in catalogue.images %}
        <div class="col-sm-6 col-lg-4" >
             <div class="box">
             <div>
@@ -158,13 +158,13 @@
                 <img src="{{'/uploads/' ~ image.nom_image}}" alt="">
               </div>
                 <div class="detail-box">
-                <h5>{{burger.nom_burger}}</h5>
+                <h5>{{catalogue.nom}}</h5>
                 <p>Veniam debitis quaerat officiis quasi cupiditate quo, 
                     quisquam velit, magnam voluptatem repellendus sed eaque
                 </p>
                 <div class="options">
-                    <a href="{{path('details',{'id':burger.id})}}" class="span" style="background: none; color:#ffbe33;">Details</a>
-                    <a href="{{path('cart_add',{'id':burger.id})}}"><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{path('details',{'id':catalogue.id})}}" class="span" style="background: none; color:#ffbe33;">Details</a>
+                    <a href="{{path('cart_add',{'id':catalogue.id ~ catalogue.type} )}}"><i class="fas fa-shopping-cart"></i></a>
                 </div>
                 </div>
             </div>
@@ -174,56 +174,7 @@
         {% endfor %} 
         </div>
     </div>
-    <div class="filters-content">
-        <div class="row grid">
-        {% for complement in complements %}  
-        {% for image in complement.images %}
-       <div class="col-sm-6 col-lg-4" >
-            <div class="box">
-            <div>
-                <div class="img-box">
-                <img src="{{'/uploads/' ~ image.nom_image}}" alt="">
-              </div>
-                <div class="detail-box">
-                <h5>{{complement.nom_complement}}</h5>
-                <p>Veniam debitis quaerat officiis quasi cupiditate quo, 
-                    quisquam velit, magnam voluptatem repellendus sed eaque
-                </p>
-                </div>
-            </div>
-            </div>
-        </div>
-        {% endfor %}
-        {% endfor %} 
-        </div>
-    </div>
-    <div class="filters-content">
-        <div class="row grid">
-        {% for menu in menus %}  
-        {% for image in menu.images %}
-       <div class="col-sm-6 col-lg-4" >
-            <div class="box">
-            <div>
-                <div class="img-box">
-                <img src="{{'/uploads/' ~ image.nom_image}}" alt="">
-              </div>
-                <div class="detail-box">
-                <h5>{{menu.nom_menu}}</h5>
-                <p>Veniam debitis quaerat officiis quasi cupiditate quo, 
-                    quisquam velit, magnam voluptatem repellendus sed eaque
-                </p>
-                <div class="options">
-                    <a href="{{path('details',{'id':menu.id})}}" class="span" style="background: none; color:#ffbe33;">Details</a>
-                    <a href="{{path('cart_add',{'id':menu.id})}}"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        {% endfor %}
-        {% endfor %} 
-        </div>
-    </div>
+
     <div class="btn-box">
         <a href="">Voir Plus</a>
     </div>

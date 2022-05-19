@@ -15,11 +15,7 @@ class Complement
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    public $nom_complement;
-
-    #[ORM\Column(type: 'integer')]
-    public $prix_complement;
+   
 
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
@@ -33,11 +29,25 @@ class Complement
     #[ORM\OneToMany(mappedBy: 'complements', targetEntity: Image::class , cascade:["persist"])]
     public $images;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $etat;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nom;
+
+    #[ORM\Column(type: 'integer')]
+    private $prix;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
         $this->burgers = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->etat = 'en cours';
+        $this->type = 'complement';
     }
 
     public function getId(): ?int
@@ -46,32 +56,9 @@ class Complement
     }
     public function __toString()
     {
-        return $this ->nom_complement;
+        return $this ->nom;
     }
 
-    public function getNomComplement(): ?string
-    {
-        return $this->nom_complement;
-    }
-
-    public function setNomComplement(string $nom_complement): self
-    {
-        $this->nom_complement = $nom_complement;
-
-        return $this;
-    }
-
-    public function getPrixComplement(): ?int
-    {
-        return $this->prix_complement;
-    }
-
-    public function setPrixComplement(int $prix_complement): self
-    {
-        $this->prix_complement = $prix_complement;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -162,6 +149,54 @@ class Complement
                 $image->setComplements(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

@@ -57,38 +57,57 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                Tableau de bord
                             </a>
+            
                             <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutes" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Ajout Produit
+                                    Burger
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseLayoutes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{path('add_burger')}}">Burger</a>
-                                    <a class="nav-link" href="{{path('add_complement')}}">Complement</a>
-                                    <a class="nav-link" href="{{path('add_menu')}}">Menu</a>
+                                    <a class="nav-link" href="{{path('add_burger')}}">Ajout</a>
+                                    <a class="nav-link" href="{{path('list_burger')}}">Liste</a>
+                                    <a class="nav-link" href="{{path('liste_archiver')}}">Liste Archiver</a>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                               Liste des Burgers
-                            </a>
 
-{#                             /////////////////////////////                       #}
-
+            {#       ////////////////////////////////ejjr///////////   #} 
+            
                             <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                               Liste des Menus
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayout" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                    Menu
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseLayout" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{path('add_menu')}}">Ajout</a>
+                                    <a class="nav-link" href="{{path('list_menu')}}">Liste</a>
+                                    <a class="nav-link" href="{{path('lister_archiver')}}">Liste Archiver</a>
+                                </nav>
+                            </div>
 
-                            <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                               Liste des Complements
-                            </a>
+
+        {#         ////////////////////////////////////////             #}
+
+
+                    <div class="sb-sidenav-menu-heading"></div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayou" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Complement
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayou" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="{{path('add_complement')}}">Ajout</a>
+                            <a class="nav-link" href="{{path('list_complement')}}">Liste</a>
+                            <a class="nav-link" href="{{path('list_archiver')}}">Liste Archiver</a>
+                      </nav>
+                    </div>
+
+
+            {#         ////////////////////////////////////////             #}
 
                             <div class="sb-sidenav-menu-heading"></div>
                             <a class="nav-link" href="">

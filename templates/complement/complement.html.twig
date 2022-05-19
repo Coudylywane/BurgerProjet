@@ -1,0 +1,64 @@
+{% extends 'baseges.html.twig' %}
+
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Liste des complements</a>
+ {% endblock page %}
+
+
+
+
+
+
+
+    {% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="ml-5" style="margin-left: 14%;color:#ffbe33">
+                    <h1 class="mt-4" style="font-size:32px ;">Liste des complements</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Liste des complements</li>
+                    </ol> 
+                </div>
+
+                <div class="card" style="margin-left: 14%; width: 65%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image complement</th>
+                                <th>Nom complement</th>
+                                <th>Prix complement</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for complement in complements %}
+                            {% for image in complement.images %}
+                                <tr>
+                                    <td>
+                                        <div class="comp">
+                                            <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                                        </div>
+                                    </td>
+                                    <td>{{complement.nom}}</td>
+                                    <td>{{complement.prix}}FCFA</td>
+                                    <td>
+                                        <a href="{{path('modifier',{'id':complement.id})}}" class="btn" style="color: white; background-color: #ffbe33;">Modifier</a>
+                                        <a href="{{path('archiver_complement',{'id':complement.id})}}" class="btn" style="color: #ffbe33; background-color: white;">Archiver</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+               
+                   
+            </div>
+        </main>
+    </div> 
+    
+    
+    
+      
+    {% endblock %}

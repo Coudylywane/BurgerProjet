@@ -7,14 +7,20 @@
     {% endblock image %} 
     {% block header %}
     {{ parent() }}
+    {% block commande %}
+    <li class="nav-item">
+        <a class="nav-link" href="menu.html">Mes commandes</a>
+      </li>
+    {% endblock commande %}
     {% block user %}
     <a href="" class="user_link">
         <i class="fas fa-user" aria-hidden="true"></i>
     </a>
     {% endblock user %}
     {% block connect %}{% endblock connect %}
+
     {% block deconnect %}
-    <a href="{{path('logout')}}" class="order_online">
+    <a href="{{path('app_logout')}}" class="order_online">
         Deconnexion
     </a>
     {% endblock deconnect %}
@@ -154,26 +160,28 @@
     </div>
     <div class="filters-content">
         <div class="row grid">
-        {% for burger in burgers %}  
-        <div class="col-sm-6 col-lg-4" >
+        {% for catalogue in catalogues %}  
+        {% for image in catalogue.images %}
+       <div class="col-sm-6 col-lg-4" >
             <div class="box">
             <div>
                 <div class="img-box">
-                <img src="img/burger/1.png" alt="">
-                </div>
+                <img src="{{'/uploads/' ~ image.nom_image}}" alt="">
+              </div>
                 <div class="detail-box">
-                <h5>{{burger.nom_burger}}</h5>
+                <h5>{{catalogue.nom}}</h5>
                 <p>Veniam debitis quaerat officiis quasi cupiditate quo, 
                     quisquam velit, magnam voluptatem repellendus sed eaque
                 </p>
                 <div class="options">
-                    <a href="{{path('details',{'id':burger.id})}}" class="span" style="background: none; color:#ffbe33;">Details</a>
-                    <a href=""><i class="fas fa-shopping-cart"></i></a>
+                    <a href="{{path('details',{'id':catalogue.id})}}" class="span" style="background: none; color:#ffbe33;">Details</a>
+                    <a href="{{path('cart_add',{'id':catalogue.id ~ catalogue.type} )}}"><i class="fas fa-shopping-cart"></i></a>
                 </div>
                 </div>
             </div>
             </div>
         </div>
+        {% endfor %}
         {% endfor %} 
         </div>
     </div>

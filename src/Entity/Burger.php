@@ -17,17 +17,9 @@ class Burger
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    public $nom_burger;
-
-    #[ORM\Column(type: 'integer')]
-    public $prix_burger;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\OneToMany(mappedBy: 'burgers', targetEntity: Commande::class)]
-    private $commandes;
-
+   
     #[ORM\OneToMany(mappedBy: 'burgers', targetEntity: Menu::class)]
     private $menus;
 
@@ -37,12 +29,26 @@ class Burger
     #[ORM\OneToMany(mappedBy: 'burgers', targetEntity: Image::class ,cascade:["persist"])]
     public $images;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $etat;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nom;
+
+    #[ORM\Column(type: 'integer')]
+    private $prix;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->menus = new ArrayCollection();
         $this->complements = new ArrayCollection();
-        $this->images = new ArrayCollection();
+        $this->images = new ArrayCollection(); 
+        $this->type = 'burger';
+        $this->etat = 'en cours';
     }
 
     public function getId(): ?int
@@ -52,32 +58,10 @@ class Burger
 
     public function __toString()
     {
-        return $this ->nom_burger;
+        return $this ->nom;
     }
 
-    public function getNomBurger(): ?string
-    {
-        return $this->nom_burger;
-    }
-
-    public function setNomBurger(string $nom_burger): self
-    {
-        $this->nom_burger = $nom_burger;
-
-        return $this;
-    }
-
-    public function getPrixBurger(): ?int
-    {
-        return $this->prix_burger;
-    }
-
-    public function setPrixBurger(int $prix_burger): self
-    {
-        $this->prix_burger = $prix_burger;
-
-        return $this;
-    }
+   
 
     public function getDescription(): ?string
     {
@@ -91,36 +75,9 @@ class Burger
         return $this;
     }
 
-    /**
-     * @return Collection<int, Commande>
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
+    
 
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setBurgers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getBurgers() === $this) {
-                $commande->setBurgers(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Menu>
      */
@@ -204,6 +161,54 @@ class Burger
                 $image->setBurgers(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

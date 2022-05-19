@@ -1,3 +1,80 @@
-{{ form_start(formMenu)}}
+{% extends 'baseges.html.twig' %}
+
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Ajout Menu</a>
+ {% endblock page %}
+
+
+
+
+
+
+
+    {% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="ml-5" style="margin-left: 14%;color:#ffbe33">
+                    <h1 class="mt-4" style="font-size:32px ;">Ajout Menu</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Ajout Menu</li>
+                    </ol> 
+                </div>
+               
+                    <div class="forms card" style="margin-left: 14%; width: 60%;">
+                        {{ form_start(formMenu)}}   
+                        <div class="row">
+                            <div class="form-controle1 col-6">
+                                <label for="">Nom Menu</label>
+                                {{ form_widget(formMenu.nom) }}
+                            </div>
+                            <div class="form-controle1 col-6">
+                                <label for="">Prix Burger</label>
+                                {{ form_widget(formMenu.prix) }}
+                            </div>
+                        </div>
+                        <div class="form-controle1">
+                            <label for="">Description</label>
+                            {{ form_widget(formMenu.description) }}
+                        </div> 
+                        <div class="form-controle1">
+                            <label for="">Burgers</label>
+                            {{ form_widget(formMenu.burgers) }}
+                        </div> 
+                        {% for row in complement %}
+                        <div class="form-controle1">
+                            <label for="complements[]">{{row.nom}}</label> 
+                            <input type="checkbox" name="complements[]" id="" value="{{row.id}}">
+                        </div> 
+                        {% endfor %}
+
+
+{#                         {{ form_widget(formMenu.complements) }} 
+ #}                        {% if app.request.attributes.get('_route') == 'modif' %}
+                            {% for image in menu.images %}
+                                <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                            {% endfor %}
+                            {% endif %}
+
+                        <div class="form-controle1">
+                            <label for="">Choisir les images du menu</label>
+                            {{ form_widget(formMenu.image) }}
+                        </div>
+                            <div style="display: flex ; float:right;">
+                                <button type="submit" class="ajouter">Ajouter</button>
+                                <button type="submit" class="annuler">Annuler</button>
+                            </div>
+                        {{ form_end(formMenu) }} 
+                    </div>
+            </div>
+        </main>
+    </div> 
+    {% endblock %}
+
+
+
+
+
+{# {{ form_start(formMenu)}}
 <button type="submit">Enregistrer</button>
-{{ form_end(formMenu) }}
+{{ form_end(formMenu) }} #}

@@ -1,6 +1,92 @@
-{{ form_start(formComplement)}}
-<button type="submit">Enregistrer</button>
-{{ form_end(formComplement) }}
+{% extends 'baseges.html.twig' %}
+
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Ajout Complement</a>
+ {% endblock page %}
+
+
+
+
+
+
+
+    {% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="ml-5" style="margin-left: 14%;color:#ffbe33">
+                    <h1 class="mt-4" style="font-size:32px ;">Ajout Complement</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Ajout Complement</li>
+                    </ol> 
+                </div>
+               
+                    <div class="forms card" style="margin-left: 14%; width: 60%;margin-top: 7%;">
+                        {{ form_start(formComplement)}}   
+                        <div class="row">
+                            <div class="form-controle1 col-6">
+                                <label for="">Nom Complement</label>
+                                {{ form_widget(formComplement.nom) }}
+                            </div>
+                            <div class="form-controle1 col-6">
+                                <label for="">Prix Complement</label>
+                                {{ form_widget(formComplement.prix) }}
+                            </div>
+                        </div>
+                            <div class="form-controle1">
+                                <label for="">Description</label>
+                                {{ form_widget(formComplement.description) }}  
+                            </div> 
+                            {% if app.request.attributes.get('_route') == 'modifier' %}
+
+                            {% for image in complement.images %}
+                                <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                            {% endfor %}
+                            {% endif %}
+                            <div class="form-controle1">
+                                <label for="">Choisir les images du complement</label>
+                                {{ form_widget(formComplement.image) }}
+                            </div>
+
+                            
+                            <div style="display: flex ; float:right;">
+                                <button type="submit" class="ajouter">Ajouter</button>
+                                <button type="submit" class="annuler">Annuler</button>
+                            </div>
+                            
+                        {{ form_end(formComplement) }}
+                    </div>
+            </div>
+        </main>
+    </div> 
+    {# <main>
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Ajout Burger</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">Ajout Burger</li>
+                </ol>
+            {{ form_start(formBurger)}}   
+            {{ form_end(formBurger) }} 
+        </div>
+    </main> #}   
+    
+    
+      
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

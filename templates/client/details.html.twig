@@ -1,32 +1,67 @@
-{#     {% extends 'base.html.twig' %}
+{% extends 'base.catalogue.html.twig' %}
+{% block menu %}
+    {% block image %}{% endblock image %} 
+
+    {% block header %}
+    {{ parent() }}
+
+    {% block commande %}{% endblock commande %}
+
+    {% block connect %}{{ parent() }}{% endblock connect %}
+
+    {% endblock header %}
+{% endblock menu %}
+{% block slider %}{% endblock slider %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% block body %}
-{{ parent() }}
-{% block logout %}{% endblock logout %}
-{% block connect %}{{ parent() }}{% endblock connect %} #}
-
-{% block details %}
+    {% block details %}
+            
+        
     <div class="tout">
-        {% block image %}
+        {% for row in details.images %}
+        {% block images %}
         <div class="image2">
-            <img src="/img/burger/9.png" class="image3" alt="">  
+            <img src="{{'/uploads/' ~ row.nom_image}}" class="image3" alt="">
         </div>
-        {% endblock image %}
-        {% for burger in burgers %}
+        {% endblock images %}
+        {% endfor %}
         {% block cont %}
             <div class="details">
                 <div class="card">
                     <div class="contenu1">
-                    <h2 class="titre1">{{burger.nom_burger}}</h2>
-                    <p class="titre2">{{burger.description}}</p>
-                        <span class="spane">{{burger.prix_burger}}FCF</span>
+                    <h2 class="titre1">{{details.nom}}</h2>
+                    <p class="titre2">{{details.description}}</p>
+                        <span class="spane">{{details.prix}}FCF</span>
 {#                         <button class="controle">Commander</button>
  #}                    </div>
                 </div>
             </div>
         {% endblock cont %} 
-        {% endfor %}    
     </div>
+
+
 {% endblock details %}
 
 {% block ingredient %}
@@ -64,6 +99,10 @@
         </div>
     </div>
 {% endblock ingredient %}
+
+{% endblock body %}
+
+
 
 
 

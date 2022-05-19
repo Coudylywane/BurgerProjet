@@ -15,32 +15,47 @@ class Menu
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    public $nom_menu;
-
-    #[ORM\Column(type: 'integer')]
-    public   $prix_menu;
+   
 
     #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    #[ORM\OneToMany(mappedBy: 'menus', targetEntity: Commande::class)]
-    private $commandes;
+
 
     #[ORM\ManyToOne(targetEntity: Burger::class, inversedBy: 'menus')]
+    #[ORM\JoinColumn(nullable: false)]
     private $burgers;
 
     #[ORM\ManyToMany(targetEntity: Complement::class, inversedBy: 'menus')]
+    #[ORM\JoinColumn(nullable: false)]
     private $complements;
 
     #[ORM\OneToMany(mappedBy: 'menus', targetEntity: Image::class ,cascade:["persist"])]
     public $images;
+
+    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'menus')]
+    private $commandes;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $etat;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nom;
+
+    #[ORM\Column(type: 'integer')]
+    private $prix;
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->complements = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->type = 'menu';
+        $this->etat='en cours';
+
     }
 
     public function getId(): ?int
@@ -48,29 +63,7 @@ class Menu
         return $this->id;
     }
 
-    public function getNomMenu(): ?string
-    {
-        return $this->nom_menu;
-    }
 
-    public function setNomMenu(string $nom_menu): self
-    {
-        $this->nom_menu = $nom_menu;
-
-        return $this;
-    }
-
-    public function getPrixMenu(): ?int
-    {
-        return $this->prix_menu;
-    }
-
-    public function setPrixMenu(int $prix_menu): self
-    {
-        $this->prix_menu = $prix_menu;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -84,36 +77,7 @@ class Menu
         return $this;
     }
 
-    /**
-     * @return Collection<int, Commande>
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setMenus($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getMenus() === $this) {
-                $commande->setMenus(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     public function getBurgers(): ?Burger
     {
         return $this->burgers;
@@ -176,6 +140,81 @@ class Menu
                 $image->setMenus(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addMenu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeMenu($this);
+        }
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

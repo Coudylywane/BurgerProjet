@@ -6,15 +6,18 @@ table {
   }
 
   th {
-    text-align: left;
+    text-align: center;
     padding: 16px;
     color: #fff; 
     background-color: #F2C64D;
+    white-space: nowrap;
   }
   
 td {
-    text-align: left;
-    padding: 16px;
+/*     text-align: left;
+ */    padding: 16px;
+ text-align: center;
+
   }
   
   tr:nth-child(even) {
@@ -26,3 +29,5 @@ td {
     margin: 80px;
 
   }
+
+ 

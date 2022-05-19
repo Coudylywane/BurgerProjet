@@ -1,24 +1,113 @@
-.ajout{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 68vh;
-
+.forms{
+    padding: 30px 40px;
 }
 
-.ajout1{
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    width: 80%;
-    // position: absolute;
-    // padding: 25px;
-}
 
-.form-controles{
-    margin-bottom: 10px;
-    padding-bottom: 20px;
+.form-controle1{
+    margin-bottom: 9px;
+    padding-bottom: 30px;
     position: relative;
-    height: 25px;
 }
+
+
+
+.form-controle1 label{
+
+    display: block;
+    margin-bottom: 5px;
+
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    
+}
+
+
+input:invalid{
+    border-color: #900;
+    background-color: #FDD;
+  }
+
+.form-controle1 input{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    width: 100%;
+    background: #efefef;
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.form-controle1 textarea{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    width: 100%;
+    background: #efefef;
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+    height: 128px; 
+}
+
+.form-controle1 select{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    width: 100%;
+    background: #efefef;
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+}
+
+
+
+.forms button.ajouter{
+    cursor: pointer;
+    background-color: #F2C64D;
+    border: 2px solid #F2C64D;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.forms button.annuler{
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #F2C64D;
+    border-radius: 4px;
+    color: #F2C64D;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+
+
+.form-controle1 input:focus{
+    outline: 0;
+    border-color: #777;
+}
+
+.form-controle1.success input{
+    border-color: var(--success-color);
+}
+
+.form-controle1.error input{
+    border-color: var(--error-color);
+}
+.form-controle1 small{
+    color: var(--error-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+.form-controle1.error small{
+    visibility: visible;
+}
+
 

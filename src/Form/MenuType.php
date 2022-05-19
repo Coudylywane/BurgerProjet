@@ -7,17 +7,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class MenuType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom_menu')
-            ->add('prix_menu')
-            ->add('description')
+            ->add('nom')
+            ->add('prix')
+            ->add('description', TextareaType::class,[])
             ->add('burgers')
-            ->add('complements')
+            ->remove('complements')
             ->add('image',FileType::class,[
                 'attr'=>[
                     'class'=> 'mt-4'

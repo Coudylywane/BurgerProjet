@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
@@ -13,14 +15,7 @@ class Commande
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'datetime')]
-    private $date_commande;
-
-    #[ORM\Column(type: 'integer')]
-    private $numero_commande;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $etat_commande;
+    
 
     #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
     private $client;
@@ -31,53 +26,30 @@ class Commande
     #[ORM\OneToOne(inversedBy: 'commande', targetEntity: Paiement::class, cascade: ['persist', 'remove'])]
     private $paiements;
 
-    #[ORM\ManyToOne(targetEntity: Menu::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToMany(targetEntity: Menu::class, inversedBy: 'commandes')]
     private $menus;
 
-    #[ORM\ManyToOne(targetEntity: Burger::class, inversedBy: 'commandes')]
-    private $burgers;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $etat;
 
+    #[ORM\Column(type: 'datetime')]
+    private $date;
+
+    #[ORM\Column(type: 'integer')]
+    private $numero;
+
+    public function __construct()
+    {
+        $this->menus = new ArrayCollection();
+    }
+
+    
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateCommande(): ?\DateTimeInterface
-    {
-        return $this->date_commande;
-    }
-
-    public function setDateCommande(\DateTimeInterface $date_commande): self
-    {
-        $this->date_commande = $date_commande;
-
-        return $this;
-    }
-
-    public function getNumeroCommande(): ?int
-    {
-        return $this->numero_commande;
-    }
-
-    public function setNumeroCommande(int $numero_commande): self
-    {
-        $this->numero_commande = $numero_commande;
-
-        return $this;
-    }
-
-    public function getEtatCommande(): ?string
-    {
-        return $this->etat_commande;
-    }
-
-    public function setEtatCommande(string $etat_commande): self
-    {
-        $this->etat_commande = $etat_commande;
-
-        return $this;
-    }
+    
 
     public function getClient(): ?Client
     {
@@ -115,27 +87,65 @@ class Commande
         return $this;
     }
 
-    public function getMenus(): ?Menu
+    /**
+     * @return Collection<int, Menu>
+     */
+    public function getMenus(): Collection
     {
         return $this->menus;
     }
 
-    public function setMenus(?Menu $menus): self
+    public function addMenu(Menu $menu): self
     {
-        $this->menus = $menus;
+        if (!$this->menus->contains($menu)) {
+            $this->menus[] = $menu;
+        }
 
         return $this;
     }
 
-    public function getBurgers(): ?Burger
+    public function removeMenu(Menu $menu): self
     {
-        return $this->burgers;
-    }
-
-    public function setBurgers(?Burger $burgers): self
-    {
-        $this->burgers = $burgers;
+        $this->menus->removeElement($menu);
 
         return $this;
     }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getNumero(): ?int
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(int $numero): self
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+
 }

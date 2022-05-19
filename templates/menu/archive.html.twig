@@ -1,0 +1,63 @@
+{% extends 'baseges.html.twig' %}
+
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Liste des Menus</a>
+ {% endblock page %}
+
+
+
+
+
+
+
+    {% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="ml-5" style="margin-left: 14%;color:#ffbe33">
+                    <h1 class="mt-4" style="font-size:32px ;">Liste des Menu</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Liste des Menu</li>
+                    </ol> 
+                </div>
+
+                <div class="card" style="margin-left: 14%; width: 60%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom menu</th>
+                                <th>Prix menu</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for menu in menus %}
+                            {% for image in menu.images %}
+                                <tr>
+                                    <td>
+                                        <div class="comp">
+                                            <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                                        </div>
+                                    </td>
+                                    <td>{{menu.nom}}</td>
+                                    <td>{{menu.prix}}FCFA</td>
+                                    <td>
+                                        <a href="{{path('desarchiverr',{'id':menu.id})}}" class="btn" style="color: #ffbe33; background-color: white;">Desarchiver</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+               
+                   
+            </div>
+        </main>
+    </div> 
+    
+    
+    
+      
+    {% endblock %}

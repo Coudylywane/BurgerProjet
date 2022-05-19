@@ -45,12 +45,12 @@
             <tbody>
                 {% for item in items %}
                     <tr>
-                        <td>{{item.burger.nom_burger}}</td>
-                        <td>{{item.burger.prix_burger}}</td>
+                        <td>{{item.burger.nom}}</td>
+                        <td>{{item.burger.prix}}</td>
                         <td>{{item.quantity}}</td>
-                        <td>{{item.burger.prix_burger * item.quantity}}</td>
+                        <td>{{item.burger.prix * item.quantity}}</td>
                         <td>
-                            <a href="{{ path('cart_remove',{'id':item.burger.id}) }}" class="btn btn-danger btn-sm">
+                            <a href="{{ path('cart_remove',{'id':item.burger.id ~ item.burger.type}) }}" class="btn btn-danger btn-sm">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -65,8 +65,9 @@
                 </tr>
             </tfoot>
         </table>
-        <button type="submit" class="btn" style="color: white; background-color: #ffbe33;">Commander</button>
-    </div> 
+        <a href="{{path('app_login')}}" class="btn" style="color: white; background-color: #ffbe33;">Commander</a>
+{#         <button type="submit" class="btn" style="color: white; background-color: #ffbe33;">Commander</button>
+ #}    </div> 
 
     {% else %}
         <p>Surprise, C'est vide !</p>
