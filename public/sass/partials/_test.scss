@@ -7,7 +7,6 @@ body {
 
 .hero_area {
     position: relative;
-    min-height: 100vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -87,6 +86,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    margin-top: -4px;
 }
 
 .user_option .user_link {
@@ -163,7 +163,7 @@ a, a:hover, a:focus {
     -ms-flex-align: center;
     align-items: center;
     position: relative;
-    padding: 204px 0 75px 0;
+    padding: 223px 0 75px 0;
 }
 
 .slider_section .carousel-indicators li {
@@ -253,7 +253,6 @@ a, a:hover, a:focus {
 
 .offer_section {
     position: relative;
-    padding-top: 18%;
 }
 .layout_padding-bottom {
     padding-bottom: 90px;
@@ -710,5 +709,19 @@ p {
     height: 345px;
     border-radius: 10px;
     overflow: hidden;
+}
+
+#compteur{
+    display: none;
+    height: 20px;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: relative;
+    top: -10px;
+    left: 37px;
+    background: #ffbe33;
+    color: #ffffff;
 }
 

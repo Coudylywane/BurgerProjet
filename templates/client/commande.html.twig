@@ -1,45 +1,96 @@
-{% extends 'base.html.twig' %}
-
-
-{% block menu %} 
-{% endblock menu %}
-{% block nav %}
-    {% block gestionnaire %}{% endblock  %}
-    {% block client %}{{ parent() }}{% endblock %}
-    {% block logout %}{{ parent() }}{% endblock %}
-    {% endblock nav %}
-
+{% extends 'base.catalogue.html.twig' %}
+    {% block image %}{% endblock image %}   
     {% block body %}
-      
 
-
-{% block table %}
-<div class="content1">
-        <table>
-            <tr>
-              <th>Numero commande</th>
-              <th>La commande</th>
-              <th>Points</th>
-            </tr>
-            <tr>
-              <td>Jill</td>
-              <td>Smith</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>Eve</td>
-              <td>Jackson</td>
-              <td>94</td>
-            </tr>
-            <tr>
-              <td>Adam</td>
-              <td>Johnson</td>
-              <td>67</td>
-            </tr>
-          </table>
-</div>
-
-{% endblock table %}
+    <div class="container-fluid mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 ">
+            <form action="{{path('imam')}}" method="post">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Choisir</th>
+                    <th>Numero commande</th>
+                    <th>Etat</th>
+                    <th>Montant</th>  
+                    <th>Date</th>
+                    <th>Paiement</th>
+                  </tr>
+                </thead>
+              {% for commande in commandes %}
+                <tbody>
+                  <tr>
+                    <td>
+                      {% if commande.etat == 'valider' and commande.paiements.montantpaiement == 0  %}
+                            <input type="checkbox" id="" name="payer[]" value="{{commande.id}}">
+                          {% else %}
+                            <input type="checkbox" id="" name="payer[]" value="{{commande.id}}" disabled>
+                      {% endif %}
+                    </td>
+                    <td>{{commande.numero}}</td>
+                    <td>{{commande.etat}}</td>
+                    <td>
+                      {{commande.montant}} F CFA
+                    </td>
+                    <td>{{commande.date|date('d/m/Y')}}</td>
+                    <td>
+                      {% if commande.paiements.montantpaiement !=0 %}
+                        <i class="fa-solid fa-check text-success"></i>
+                      {% else %}  
+                        <i class="fa fa-xmark text-danger"></i>
+                      {% endif %}
+                    </td>    
+                      
+                  </tr>
+                </tbody>
+              {% endfor %}  
+              </table>
+                <button class="btn" style="color: white; background-color: #ffbe33; margin-left:50px" >Payer <i class="fa-solid fa-money-bill-1-wave"></i></button>
+            </form>
+            <div class="">
+              {{knp_pagination_render(commandes)}}
+            </div>
+        </div>
+        {# <div class="col-md-6">
+          <div class="card" style="width: 100%;padding:10px; height:500px">
+              <h1 style="text-align:center ;">PRODUITS</h1>
+              <div class="row">
+                <div class="col-md-6">
+                  <h1 style="text-align:center ;">BURGERS</h1>
+                  <div style="text-align:center; margin-top:20px;">
+                    {% if etat == 'true' %}
+                    {% for row in commandess %}
+                    {% for burg in row.burgers %}
+                    {% for image in burg.images %}
+                    <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                    <p>Nom Burger:{{burg.nom}}</p>
+                    <p>Prix:{{burg.prix}}FCFA</p>
+                    {% endfor %}
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <h1 style="text-align:center ;">Menu</h1>
+                  <div style="text-align:center; margin-top:20px;">
+                    {% for menu in row.menus %}
+                    {% for image in menu.images %}
+                    <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                    <p>Nom menu:{{menu.nom}}</p>
+                    <p>{{menu.burgers.prix}}FCFA
+                    </p>
+                    {% endfor %}
+                    {% endfor %}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+                  <a href="#" class="btn" style="color: white; background-color: #ffbe33;">Payement</a>
+                </div>
+              </div>
+          </div>
+          </div> #}
+          
+      </div>
+    </div>    
 
 {% endblock body %}
 

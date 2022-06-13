@@ -8,6 +8,7 @@ use App\Form\BurgerType;
 use App\Repository\ImageRepository;
 use App\Repository\BurgerRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -66,9 +67,13 @@ class BurgerController extends AbstractController
 
 
     #[Route('/list1', name: 'list_burger')]
-    public function catalogue(BurgerRepository $repo): Response
+    public function catalogue(BurgerRepository $repo , PaginatorInterface $paginatorInterface , Request $request): Response
     {
-        $burgers= $repo->findBy(['etat' => 'en cours']);
+        $burgers = $paginatorInterface->paginate(
+            $repo->findBy(['etat' => 'en cours']),
+            $request->query->getInt('page',1),
+            3
+        );
         return $this->render('burger/burger.html.twig',[
           "burgers"=> $burgers
         ]);
@@ -131,9 +136,13 @@ class BurgerController extends AbstractController
 
 
     #[Route('/listarchiver', name: 'liste_archiver')]
-    public function archiver(BurgerRepository $repo): Response
+    public function archiver(BurgerRepository $repo , PaginatorInterface $paginatorInterface , Request $request): Response
     {
-        $burgers= $repo->findBy(['etat' => 'archiver']);
+        $burgers = $paginatorInterface->paginate(
+            $repo->findBy(['etat' => 'archiver']),
+            $request->query->getInt('page',1),
+            2
+        );
         return $this->render('burger/archiver.html.twig',[
           "burgers"=> $burgers
         ]);

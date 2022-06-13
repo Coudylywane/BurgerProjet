@@ -16,8 +16,7 @@ class Paiement
     #[ORM\Column(type: 'integer')]
     private $montant_paiement;
 
-    #[ORM\Column(type: 'datetime')]
-    private $date_paiement;
+
 
     #[ORM\OneToOne(mappedBy: 'paiements', targetEntity: Commande::class, cascade: ['persist', 'remove'])]
     private $commande;
@@ -39,17 +38,6 @@ class Paiement
         return $this;
     }
 
-    public function getDatePaiement(): ?\DateTimeInterface
-    {
-        return $this->date_paiement;
-    }
-
-    public function setDatePaiement(\DateTimeInterface $date_paiement): self
-    {
-        $this->date_paiement = $date_paiement;
-
-        return $this;
-    }
 
     public function getCommande(): ?Commande
     {

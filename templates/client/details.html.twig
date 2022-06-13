@@ -1,39 +1,12 @@
 {% extends 'base.catalogue.html.twig' %}
-{% block menu %}
-    {% block image %}{% endblock image %} 
+   
+{% block client %}
+{{ parent() }}
+{% endblock client %}
 
-    {% block header %}
-    {{ parent() }}
-
-    {% block commande %}{% endblock commande %}
-
-    {% block connect %}{{ parent() }}{% endblock connect %}
-
-    {% endblock header %}
-{% endblock menu %}
-{% block slider %}{% endblock slider %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% block image %}
+    
+{% endblock image %}
 
 {% block body %}
     {% block details %}

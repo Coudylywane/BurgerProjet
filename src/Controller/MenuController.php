@@ -8,6 +8,7 @@ use App\Form\MenuType;
 use App\Repository\ComplementRepository;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -72,10 +73,15 @@ class MenuController extends AbstractController
     }
 
     #[Route('/list2', name: 'list_menu')]
-    public function catalogue(MenuRepository $repo , ComplementRepository $complementRepo): Response
+    public function catalogue(MenuRepository $repo , ComplementRepository $complementRepo , PaginatorInterface $paginatorInterface , Request $request): Response
     {
-       $complement = $complementRepo->findBy(['etat'=>'en cours']);
-        $menus=$repo->findBy(['etat'=>'en cours']);
+        
+       $complement =  $complementRepo->findBy(['etat'=>'en cours']);
+       $menus = $paginatorInterface->paginate(
+        $repo->findBy(['etat'=>'en cours']),
+        $request->query->getInt('page',1),
+        3
+    );
         return $this->render('menu/menu.html.twig',[
             'complements' => $complement,
             "menus"=> $menus
@@ -160,8 +166,6 @@ class MenuController extends AbstractController
 
 
 
-/*     archiv
- */
 
     
 

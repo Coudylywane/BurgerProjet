@@ -41,6 +41,9 @@ class Burger
     #[ORM\Column(type: 'integer')]
     private $prix;
 
+    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'burgers')]
+    private $commandes;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -209,6 +212,33 @@ class Burger
     public function setPrix(int $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->addBurger($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removeBurger($this);
+        }
 
         return $this;
     }

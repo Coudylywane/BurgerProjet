@@ -1,0 +1,55 @@
+.bordure{
+    padding: 10px ;
+    cursor: pointer;  
+}
+
+.info{
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.info2{
+    display: none;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+    background-size: 40px 40px;
+}
+
+.name{
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 70%;
+}
+
+.lepp{
+    width: 550px;
+    margin-left: 45px;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    margin-top: 2%;
+    background-color: #fff;
+    transition: background-color .4s ease-out;
+}
+
+.descriptions{
+    margin-top: 10px;
+    color: #666;
+    font-size: 12px;
+    margin-right: -101%;
+}
+
+.price{
+    text-align: right;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+
+.iii{
+    width: 30%;
+    margin-top: -5%;
+}
+
+

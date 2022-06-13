@@ -47,7 +47,22 @@
                     <tr>
                         <td>{{item.burger.nom}}</td>
                         <td>{{item.burger.prix}}</td>
-                        <td>{{item.quantity}}</td>
+
+                        <td>
+                            <button class="btn" >
+                                <a href="{{path('moins',{'id':item.burger.id ~  item.burger.type} )}}">
+                                    <i class="fa-solid fa-minus" style="color: #ffbe33;"></i>
+                                </a>
+                            </button>
+
+                                <span style="margin: 0 10px;">{{item.quantity}}</span>
+
+                            <button class="btn">
+                                <a href="{{path('plus',{'id':item.burger.id ~  item.burger.type})}}">
+                                    <i class="fa-solid fa-plus" style="color: #ffbe33;"></i>
+                                </a>
+                            </button>
+                        </td>
                         <td>{{item.burger.prix * item.quantity}}</td>
                         <td>
                             <a href="{{ path('cart_remove',{'id':item.burger.id ~ item.burger.type}) }}" class="btn btn-danger btn-sm">
@@ -65,9 +80,13 @@
                 </tr>
             </tfoot>
         </table>
-        <a href="{{path('app_login')}}" class="btn" style="color: white; background-color: #ffbe33;">Commander</a>
-{#         <button type="submit" class="btn" style="color: white; background-color: #ffbe33;">Commander</button>
- #}    </div> 
+{#         <a href="{{path('app_login')}}" class="btn" style="color: white; background-color: #ffbe33;">Commander</a>
+ #}        
+
+        <form action="" method="post">
+            <button type="submit" class="btn" style="color: white; background-color: #ffbe33;">Commander</button>
+        </form>
+    </div> 
 
     {% else %}
         <p>Surprise, C'est vide !</p>

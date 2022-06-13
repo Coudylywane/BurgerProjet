@@ -1,20 +1,77 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseges.html.twig' %}
 
-{% block title %}Hello CommandeController!{% endblock %}
+{% block page %}
+    <a class="navbar-brand ps-5" style="text-align: center;" href="index.html">Liste des Commandes</a>
+ {% endblock page %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/coudy/Bureau/Symfony1/Burger-projet/src/Controller/CommandeController.php'|file_link(0) }}">src/Controller/CommandeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/coudy/Bureau/Symfony1/Burger-projet/templates/commande/index.html.twig'|file_link(0) }}">templates/commande/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+
+
+
+
+    {% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="ml-5" style="margin-left: 14%;color:#ffbe33">
+                    <h1 class="mt-4" style="font-size:32px ;">Liste des Commandes</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Liste des Commandes</li>
+                    </ol> 
+                </div>
+
+                <div class="card" style=" width: 100%;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Numero</th>
+                                <th>Client</th>
+                                <th>Etat</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>   
+                        </thead>
+                        <tbody>
+                            {% for commande in commandes %}
+                                <tr>
+                                    <td>{{commande.numero}}</td>
+                                    <td>{{commande.users}}</td>
+                                    <td>{{commande.etat}}</td>
+                                    <td>{{commande.date|date('d/m/Y')}}</td>
+
+
+                                    {% if commande.etat == 'valider' or commande.etat == 'annuler' %}
+                                    <td>
+                                        <a disabled href="#" class="btn" style="color: white; background-color: #ffbe33;">déjà réglée</a>
+                                    </td>
+                                    {% else %}
+                                    <td>
+                                        <a href="{{path('valider',{'id':commande.id})}}" class="btn" style="color: white; background-color: #ffbe33;">Valider <i class="fa-solid fa-check"></i></a>
+                                        <a href="{{path('annuler',{'id':commande.id})}}" class="btn" style="color: #ffbe33; background-color: white;">Annuler <i class="fas fa-undo"></i></a>
+                                    </td>
+                                    {% endif %}
+                                   
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    {# 
+                        <div class = "navigation mt-3 mb-3" >
+                            {{ knp_pagination_render( burgers) }}
+                        </div> 
+                    #}
+
+                </div>
+               
+                   
+            </div>
+        </main>
+    </div> 
+    
+    
+    
+      
+    {% endblock %}
+

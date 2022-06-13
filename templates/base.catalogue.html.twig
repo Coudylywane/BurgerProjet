@@ -17,66 +17,107 @@
         </head>
 
 <body>
-  {% block menu %}
-  <div class="hero_area">
+  <div class="image">
     {% block image %}
+  <div class="bg-box">
+    <img src="/img/banner/1.jpg" alt="">
+    </div> 
     {% endblock image %}
-    {% block header %}
-    <header class="header_section" style="background-color: black ;">
-      <div class="container">
-          <nav class="navbar navbar-expand-lg custom_nav-container">
-              <a class="navbar-brand" href="{{path('catalogue')}}">
-                  <span>
-                   Brazil Burger
-                  </span>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class=""> </span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav  mx-auto ">
-                      <li class="nav-item active">
-                        <a class="nav-link" href="{{path('catalogue')}}">Home <span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="menu.html">Menu</a>
-                      </li>
-                      {% block commande %}
-                        
-                      {% endblock commande %}
-                  </ul>
-                  <div class="user_option">
-                    {% block user %}
 
-                    {% endblock user %}
-                      <a class="cart_link" href="{{path('cart_index')}}"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+  
+  
+        <header class="header_section" style="background-color: black ;">
+          <div class="container">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+          {% block partie1  %}
+            <a class="navbar-brand" href="{{path('catalogue')}}">
+              <span>
+              Brazil Burger
+              </span>
+            </a>
+
+          {% endblock partie1 %}
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             
+                {% block navbar %}
+
+                <ul class="navbar-nav  mx-auto ">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{{path('catalogue')}}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="menu.html">Menu</a>
+                    </li>
+                    {% if  app.user %}
+                      {% block client %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{path('commande')}}">Mes commandes</a>
+                        </li>
+                      {% endblock client %}
+                    {% endif %}
+                  <div class="user_option">
+                    {% if  app.user %}
+                    {% block login1 %}
+                    <a href="" class="user_link">
+                        <i class="fas fa-user" aria-hidden="true">  
+                        </i>
+                        {{app.user.prenom}} {{app.user.nom}} 
+                    </a>
+                    {% endblock login1 %}
+                    {% endif %}
+{#                       <span id="compteur"></span>
+ #}                      <a class="cart_link" href="{{path('cart_index')}}"><i class="fas fa-shopping-cart "></i></a>
                       <form class="form-inline">
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                          <i class="fas fa-search" aria-hidden="true"></i>
+                          <i class="fa
+                           fa-search" aria-hidden="true"></i>
                         </button>
                       </form>
-                      {% block connect %}
-                      <a href="{{path('app_login')}}" class="order_online">
-                        Connexion
-                       </a>
-                      {% endblock connect %}
-                     
-                      {% block deconnect %}
-                        
-                      {% endblock deconnect %}
+
+                      {% if not app.user %}
+                        {% block login2 %}
+                        <a href="{{path('app_login')}}" class="order_online">
+                          Connexion
+                        </a>
+                        {% endblock login2 %}
+                      {% endif %}
+
+                      {% if app.user  %}
+                      {% block login %}
+                      <a href="{{path('app_logout')}}" class="order_online">
+                        Deconnexion
+                      </a>  
+                      {% endblock login %}
+                      {% endif %}
+
+
                   </div>
-              </div>
-          </nav>
+
+               
+                
+                </ul>
+
+                {% endblock navbar %}
+
+
+            </div>
+
+
+        </nav>
+        
       </div>
-    </header>
-    {% endblock header %}
-  </div> 
-  {% endblock menu %}
-
-
-  {% block slider %}
+      
+        </header>
+        {% block slider %}
     
-  {% endblock slider %}
+        {% endblock slider %}
+  
 
   
 </body>
@@ -113,6 +154,7 @@
 
 {% block js %}
             <script src="/js/menu.js"></script>
+            <script src="/js/compteur.js"></script>
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

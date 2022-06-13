@@ -67,7 +67,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             $redirection = new RedirectResponse($this->urlGenerator->generate('tableau_bord'));
         } elseif (in_array('ROLE_USER', $rolesTab, true)) {
             // c'est un utilisaeur lambda : on le rediriger vers l'accueil
-            $redirection = new RedirectResponse($this->urlGenerator->generate('catalogueC'));
+            $redirection = new RedirectResponse($this->urlGenerator->generate('catalogue'));
         }
 
         return $redirection;

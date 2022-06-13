@@ -17,11 +17,8 @@ class Commande
 
     
 
-    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'commandes')]
-    private $client;
 
-    #[ORM\ManyToOne(targetEntity: Gestionnaire::class, inversedBy: 'commandes')]
-    private $gestionnaire;
+
 
     #[ORM\OneToOne(inversedBy: 'commande', targetEntity: Paiement::class, cascade: ['persist', 'remove'])]
     private $paiements;
@@ -32,15 +29,26 @@ class Commande
     #[ORM\Column(type: 'string', length: 255)]
     private $etat;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'string', length: 255)]
     private $date;
 
     #[ORM\Column(type: 'integer')]
     private $numero;
 
+    #[ORM\ManyToMany(targetEntity: Burger::class, inversedBy: 'commandes')]
+    private $burgers;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
+    private $users;
+
+    #[ORM\Column(type: 'integer')]
+    private $montant;
+
     public function __construct()
     {
         $this->menus = new ArrayCollection();
+        $this->burgers = new ArrayCollection();
+        $this->etat = 'en cours';
     }
 
     
@@ -51,29 +59,9 @@ class Commande
 
     
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
+    
 
-    public function setClient(?Client $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    public function getGestionnaire(): ?Gestionnaire
-    {
-        return $this->gestionnaire;
-    }
-
-    public function setGestionnaire(?Gestionnaire $gestionnaire): self
-    {
-        $this->gestionnaire = $gestionnaire;
-
-        return $this;
-    }
+   
 
     public function getPaiements(): ?Paiement
     {
@@ -123,17 +111,7 @@ class Commande
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
+   
 
     public function getNumero(): ?int
     {
@@ -147,5 +125,72 @@ class Commande
         return $this;
     }
 
+    /**
+     * @return Collection<int, Burger>
+     */
+    public function getBurgers(): Collection
+    {
+        return $this->burgers;
+    }
 
+    public function addBurger(Burger $burger): self
+    {
+        if (!$this->burgers->contains($burger)) {
+            $this->burgers[] = $burger;
+        }
+
+        return $this;
+    }
+
+    public function removeBurger(Burger $burger): self
+    {
+        $this->burgers->removeElement($burger);
+
+        return $this;
+    }
+
+
+
+
+    /**
+     * Get the value of date
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set the value of date
+     */
+    public function setDate($date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    public function getMontant(): ?int
+    {
+        return $this->montant;
+    }
+
+    public function setMontant(int $montant): self
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
 }

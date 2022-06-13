@@ -1,0 +1,152 @@
+{% extends 'base.catalogue.html.twig' %}
+    {% block image %}{% endblock image %}   
+
+    {% block body %}
+
+
+    <div class="card w-75 container-fluid mt-5 ">
+        <h2 class="ml-5 mt-5">DETAIL -- COMMANDE</h2>
+            {% for row in paiement %}
+        <div class="row text-center">
+            <div class="col-md-6">
+               <div class="lepp">
+                <div class="row">
+                     <div class="bordure col-8">
+                         <div class="info w-75">
+                             <div class="info2"></div>
+                             <div class="name">{{row.numero}}</div>
+                             <div class="descriptions">
+                                 Filet de poulet pane fromage cheddar, jambon de bœuf, sauce maison, salade tomates
+                             </div>
+                         </div>
+                     </div>
+                     <div class="pl-0 pr-0 item-tags-container col-4" style="margin-top: 10px;">
+                         <div class="price">
+                             <span>{{row.montant}}</span>
+                         </div>
+                     </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6">
+                <div class="picture">
+                    <img src="img/burger/2.png" alt="" class="iii">
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <form action="{{path('voir_commande')}}" method="post">
+            <button type="submit" value="ok" name="confirmer" class="btn ml-5 mb-3" style="color: white; background-color: #ffbe33;">Confirmer paiement </button>
+        </form> 
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {# <div class="container-fluid mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8 ">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Numero commande</th>
+                      <th>Etat</th>
+                      <th>Montant</th>  
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        {% for row in paiement %}
+                            <td>{{row.numero}}</td>
+                            <td>{{row.etat}}</td>
+                            <td>{{row.montant}}</td>
+                            <td>{{row.date|date('d/m/Y')}}</td>
+                        {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+            <form action="{{path('voir_commande')}}" method="post">
+                <button type="submit" value="ok" name="confirmer" class="btn" style="color: white; background-color: #ffbe33;">Confirmer paiement </button>
+              </form> #}
+              {# <div class="">
+                {{knp_pagination_render()}}
+              </div> #}
+          {# </div> #}
+          {# <div class="col-md-6">
+            <div class="card" style="width: 100%;padding:10px; height:500px">
+                <h1 style="text-align:center ;">PRODUITS</h1>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h1 style="text-align:center ;">BURGERS</h1>
+                    <div style="text-align:center; margin-top:20px;">
+                      {% if etat == 'true' %}
+                      {% for row in commandess %}
+                      {% for burg in row.burgers %}
+                      {% for image in burg.images %}
+                      <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                      <p>Nom Burger:{{burg.nom}}</p>
+                      <p>Prix:{{burg.prix}}FCFA</p>
+                      {% endfor %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <h1 style="text-align:center ;">Menu</h1>
+                    <div style="text-align:center; margin-top:20px;">
+                      {% for menu in row.menus %}
+                      {% for image in menu.images %}
+                      <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
+                      <p>Nom menu:{{menu.nom}}</p>
+                      <p>{{menu.burgers.prix}}FCFA
+                      </p>
+                      {% endfor %}
+                      {% endfor %}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <a href="#" class="btn" style="color: white; background-color: #ffbe33;">Payement</a>
+                  </div>
+                </div>
+            </div>
+            </div> #}
+            
+       {#  </div>
+      </div>  #}
+    {% endblock body %}

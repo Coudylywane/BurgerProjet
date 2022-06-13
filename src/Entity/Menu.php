@@ -63,8 +63,6 @@ class Menu
         return $this->id;
     }
 
-
-
     public function getDescription(): ?string
     {
         return $this->description;

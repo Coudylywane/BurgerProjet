@@ -5,35 +5,22 @@ namespace App\Controller;
 
 use App\Repository\MenuRepository;
 use App\Repository\BurgerRepository;
+use App\Repository\CommandeRepository;
 use App\Repository\ComplementRepository;
+use App\Repository\PaiementRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use ContainerBoLhxUK\PaginatorInterface_82dac15;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ClientController extends AbstractController
 {
 
-    /* #[Route('/', name: 'catalogue')]
-    public function catalogue(BurgerRepository $repo , ComplementRepository $repocomplement , MenuRepository $repomenu): Response
-    {
-
-        if ($this->getUser()) {
-            $role = $this->getUser()->getRoles();
-        }else{
-            $role = '';
-        }
-        $menus=$repomenu->findAll();
-        $complements=$repocomplement->findAll();
-        $burgers=$repo->findAll();
-        return $this->render('client/catalogue.html.twig',[
-          "burgers"=> $burgers,
-          "complements"=> $complements,
-          "menus"=> $menus,
-          'role'    => $role
-        ]);
-    }   */
 
     #[Route('/', name: 'catalogue')]
     public function catalogue( BurgerRepository $repoBurger,MenuRepository $repoMenu): Response
@@ -59,37 +46,42 @@ class ClientController extends AbstractController
 
     
 
-    
-
-
-    #[Route('/catalogue', name: 'catalogueC')]
-    /**
- *
- * @IsGranted("ROLE_USER")
- */
-    public function catalogueC(BurgerRepository $repoBurger , MenuRepository $repoMenu): Response
-    {
-
-        $burgers = $repoBurger -> findBy(['etat'=>'en cours']);
-        $menus = $repoMenu -> findBy(['etat'=>'en cours']);
-        $catalogues = array_merge($burgers  , $menus);
-
-        return $this->render('client/catalogue_c.html.twig',[
-          "catalogues"=> $catalogues,
-        ]);
-    }
-
-   
-
-
 
     #[Route('/commande', name: 'commande')]
-    public function commande(): Response
+    public function commande(CommandeRepository $commandeRepository , PaginatorInterface $paginatorInterface , Request $request): Response
     {
+        $idUser = array_values((array)$this->getUser())[0];
+        $commandes = $paginatorInterface->paginate
+        (
+            $commandeRepository->findBy(['users'=>$idUser]),
+            $request->query->getInt('page',1),
+            5
+        );
         return $this->render('client/commande.html.twig', [
-            'controller_name' => 'ClientController',
+            'commandes' => $commandes,
         ]);
     }
+
+   /*  #[Route('/voirCommande/{id}', name: 'voir_commande')]
+    public function voirCommande( $id , CommandeRepository $commandeRepository , Request $request,PaginatorInterface $paginatorInterface, ComplementRepository $complementRepository): Response
+    {
+        $etat = 'true';
+        $complements =  $complementRepository->findBy(['etat'=>'en cours']);
+        $idUser = array_values((array)$this->getUser())[0];
+        $commandes = $paginatorInterface->paginate
+        (
+            $commandeRepository->findBy(['users'=>$idUser]),
+            $request->query->getInt('page',1),
+            2
+        );
+        $commandess = $commandeRepository->findBy(['id'=>$id]);
+        return $this->render('client/commande.html.twig', [
+            'commandess' => $commandess,
+            'commandes' => $commandes,
+            'complements'=> $complements,
+            'etat'=> $etat,
+        ]);
+    } */
 
 
 
@@ -116,8 +108,76 @@ class ClientController extends AbstractController
             'details'=>$details,
         ]);
 
+    }  
+
+    #[Route('/paiement', name: 'imam')]
+    public function imam(CommandeRepository $commandeRepository , Request $request, PaiementRepository $paiementRepository, EntityManagerInterface $entityManagerInterface): Response
+    {
+        $data = $request->request->all();
+        extract($data);
+       if (isset($payer)) {
+         foreach ($payer as $value) {
+             $paiement[] = $commandeRepository->find($value);
+         }
+
+            foreach ($paiement as $val) {
+            $commandeValide[]= [
+                'paiements' => $paiementRepository ->find($val->getPaiements()),
+                'montant' => $val->getMontant(),
+            ];
+         }
+
+        /*  foreach ($commandeValide as $vale) {
+            $vale['paiements'] -> setMontantPaiement($vale['montant']);
+            $entityManagerInterface->persist( $vale['paiements'] );
+            $entityManagerInterface-> flush();
+         } */
+
+         $session = $request ->getSession();
+         $session ->set('payer' , $payer);
+         return $this->render('client/detail.commande.html.twig', [
+           'paiement' => $paiement,
+        ]);
+
+       }
+       return $this->redirectToRoute('commande');   
     }
+
     
+
+
+
+
+    #[Route('/detailCommande', name: 'voir_commande')]
+    public function voirCommande(Request $request , CommandeRepository $commandeRepository , PaiementRepository $paiementRepository ,EntityManagerInterface $entityManagerInterface ): Response
+    {
+        $session = $request->getSession();
+        $payer = $session->get("payer");
+        $method = $request->getMethod();
+        if ($method == 'POST') {
+            foreach ($payer as $value) {
+                $paiement[] = $commandeRepository->find($value);
+            }
+
+            foreach ($paiement as $val) {
+                $commandeValide[]= [
+                    'paiements' => $paiementRepository ->find($val->getPaiements()),
+                    'montant' => $val->getMontant(),
+                ];
+             }
+
+              foreach ($commandeValide as $vale) {
+            $vale['paiements'] -> setMontantPaiement($vale['montant']);
+            $entityManagerInterface->persist( $vale['paiements'] );
+            $entityManagerInterface-> flush();
+         } 
+
+             
+        }
+
+        return $this->redirectToRoute('commande');   
+
+    } 
       
     } 
 
