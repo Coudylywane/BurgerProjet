@@ -15,9 +15,6 @@ class Commande
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    
-
-
 
 
     #[ORM\OneToOne(inversedBy: 'commande', targetEntity: Paiement::class, cascade: ['persist', 'remove'])]

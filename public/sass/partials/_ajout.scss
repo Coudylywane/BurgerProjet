@@ -12,13 +12,11 @@
 
 
 .form-controle1 label{
-
     display: block;
     margin-bottom: 5px;
 
     display: inline-block;
     margin-bottom: 0.5rem;
-    
 }
 
 
@@ -109,5 +107,56 @@ input:invalid{
 .form-controle1.error small{
     visibility: visible;
 }
+
+
+.imgs{
+    margin-bottom: 9px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.imglabel{
+    display: block;
+    margin-bottom: 5px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.imgs input{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    width: 100%;
+    background: #efefef;
+    display: block;
+    font-size: 14px;
+    padding: 10px;
+    height: 53px;
+}
+
+.mt-4 {
+    margin-top: 0.5rem !important;
+}
+
+.form-error {
+    margin-left: 3px;
+    color: red;
+    margin-top: 8px;
+}
+
+.form-cont{
+    display: flex;
+    margin-bottom: 5px;
+    display: inline-block;
+    margin-bottom: 2.5rem;
+    margin-left:5px ;
+}
+
+/* .lib{
+    display: block;
+    margin-bottom: 5px;
+    display: inline-block;
+    margin-bottom: 0.5rem; 
+} */
+
 
 

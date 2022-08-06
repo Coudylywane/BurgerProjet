@@ -58,3 +58,23 @@
   width: 30%;
   margin-top: -5%;
 }
+
+/* line 55, ../../sass/partials/detail2.scss */
+.dett {
+  margin-top: 34px;
+  text-align: center;
+  margin-left: -42px;
+}
+
+/* line 61, ../../sass/partials/detail2.scss */
+.detaills {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* line 66, ../../sass/partials/detail2.scss */
+.touss {
+  text-align: center;
+  margin-left: 11%;
+  margin-top: 30px;
+}

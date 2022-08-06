@@ -26,16 +26,25 @@
                         <div class="row">
                             <div class="form-controle1 col-6">
                                 <label for="">Nom Burger</label>
-                                {{ form_widget(formBurger.nom) }}
+                                {{ form_widget(formBurger.nom,{'attr':{'placeholder': "Entrer le nom du Burger"}}) }}
+                                <div class="form-error">
+                                    {{ form_errors(formBurger.nom) }}
+                                </div>
                             </div>
                             <div class="form-controle1 col-6">
                                 <label for="">Prix Burger</label>
-                                {{ form_widget(formBurger.prix) }}
+                                {{ form_widget(formBurger.prix,{'attr':{'placeholder': "Entrer le prix du Burger"}}) }}
+                                <div class="form-error">
+                                    {{ form_errors(formBurger.prix) }}
+                                </div>
                             </div>
                         </div>
                             <div class="form-controle1">
                                 <label for="">Description</label>
-                                {{ form_widget(formBurger.description) }}
+                                {{ form_widget(formBurger.description,{'attr':{'placeholder': "Entrer la description du Burger"}}) }}
+                                <div class="form-error">
+                                    {{ form_errors(formBurger.description) }}
+                                </div>
                             </div> 
 
                             {% if app.request.attributes.get('_route') == 'modifier_burger' %}
@@ -43,10 +52,13 @@
                                 <img src="{{'/uploads/' ~ image.nom_image}}" style="width: 30%;" alt="">
                             {% endfor %}
                             {% endif %}
-                            <div class="form-controle1">
-                                <label for="">Choisir les images du burger</label>
-                                {{ form_widget(formBurger.image) }}
-                            </div>
+                            <div class="imgs">
+                                <label for="" class="imglabel">Choisir les images du burger</label>
+                                {{ form_widget(formBurger.image,{'attr':{'placeholder': "Entrer l'image du burger"}}) }}
+                                <div class="form-error">
+                                    {{ form_errors(formBurger.image) }}
+                                </div>
+                            </div>  
                             <div style="display: flex ; float:right;">
                                 <button type="submit" class="ajouter">Ajouter</button>
                                 <button type="submit" class="annuler">Annuler</button>

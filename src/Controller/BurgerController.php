@@ -32,7 +32,7 @@ class BurgerController extends AbstractController
         $formBurger = $this->createForm(BurgerType::class,$burger);
         $formBurger ->handleRequest($request);
 
-        if ($formBurger->isSubmitted()) {
+        if ($formBurger->isSubmitted() && $formBurger->isValid() ) {
 
             // on recupere les images transmises
 

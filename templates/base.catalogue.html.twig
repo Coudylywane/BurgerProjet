@@ -33,7 +33,7 @@
           {% block partie1  %}
             <a class="navbar-brand" href="{{path('catalogue')}}">
               <span>
-              Brazil Burger
+              <img src="img/banner/logo.png" alt="" style="    width: 41%;margin-left: 20px;">
               </span>
             </a>
 
@@ -52,7 +52,7 @@
                       <a class="nav-link" href="{{path('catalogue')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="menu.html">Menu</a>
+                      <a class="nav-link" href="#menu">Menu</a>
                     </li>
                     {% if  app.user %}
                       {% block client %}
@@ -73,12 +73,6 @@
                     {% endif %}
 {#                       <span id="compteur"></span>
  #}                      <a class="cart_link" href="{{path('cart_index')}}"><i class="fas fa-shopping-cart "></i></a>
-                      <form class="form-inline">
-                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                          <i class="fa
-                           fa-search" aria-hidden="true"></i>
-                        </button>
-                      </form>
 
                       {% if not app.user %}
                         {% block login2 %}
